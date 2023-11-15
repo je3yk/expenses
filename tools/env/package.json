@@ -1,0 +1,21 @@
+{
+  "name": "@expenses/env",
+  "private": true,
+  "version": "0.1.0",
+  "main": "env.ts",
+  "types": "env.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@t3-oss/env-nextjs": "^0.7.0",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "@expenses/tsconfig": "workspace:*",
+    "@types/node": "^17.0.12",
+    "typescript": "^4.1.3"
+  },
+  "prettier": "@expenses/prettier-config"
+}

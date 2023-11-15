@@ -1,0 +1,9 @@
+{
+  "extends": "@expenses/tsconfig/base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "strict": true
+  },
+  "include": ["."],
+  "exclude": ["node_modules"]
+}
