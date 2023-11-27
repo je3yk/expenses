@@ -1,0 +1,41 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1701116622122,
+      "tag": "0000_optimal_red_shift",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1701116816570,
+      "tag": "0001_windy_malice",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1701120919491,
+      "tag": "0002_round_lethal_legion",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1701121096060,
+      "tag": "0003_cultured_riptide",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1701121250768,
+      "tag": "0004_wild_exodus",
+      "breakpoints": true
+    }
+  ]
+}

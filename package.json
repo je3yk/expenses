@@ -8,7 +8,9 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui:add": "pnpm -F web ui:add"
+    "ui:add": "pnpm -F web ui:add",
+    "db:push": "pnpm -F db db:push",
+    "db:generate": "pnpm -F db db:generate"
   },
   "devDependencies": {
     "eslint": "^8.48.0",

@@ -1,0 +1,34 @@
+{
+  "name": "@expenses/db",
+  "private": true,
+  "version": "0.1.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "db:push": "pnpm with-env drizzle-kit push:pg",
+    "db:studio": "pnpm with-env drizzle-kit studio:pg",
+    "db:generate": "pnpm with-env drizzle-kit generate:pg",
+    "with-env": "dotenv -e ../../.env.local --"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.29.0",
+    "postgres": "^3.4.3",
+    "@expenses/env": "workspace:*"
+  },
+  "devDependencies": {
+    "@expenses/eslint-config": "workspace:*",
+    "@expenses/prettier-config": "workspace:*",
+    "@expenses/tsconfig": "workspace:*",
+    "drizzle-kit": "^0.20.4",
+    "pg": "^8.11.3",
+    "dotenv-cli": "^7.3.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-custom/react",
+      "eslint-config-custom/next",
+      "eslint-config-custom/library"
+    ]
+  },
+  "prettier": "@expenses/prettier-config"
+}
