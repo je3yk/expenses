@@ -1,9 +1,11 @@
 import "~/styles/globals.css";
 
-import type { Metadata } from "next";
 import { GeistSans } from "geist/font";
+import type { Metadata } from "next";
 
+import { AuthProvider } from "~/context/AuthContext";
 import ThemeProvider from "~/providers/theme-provider";
+import TrpcProvider from "~/providers/trpc-provider";
 
 export const metadata: Metadata = {
   title: "Expenses",
@@ -24,7 +26,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AuthProvider>
+            <TrpcProvider>{children}</TrpcProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
