@@ -1,13 +1,14 @@
 "use client"
 
-import { Provider, Session, UserMetadata } from "@supabase/supabase-js";
+import { Provider, UserMetadata } from "@supabase/supabase-js";
 import { createContext, useContext, useEffect, useState } from "react";
+import useSessionToken from "~/hooks/useSessionToken";
 import { useSupabaseClient } from "~/supabase/useSupabaseClient";
 
 
 type AuthContextValues = {
-    session?: Session;
     user?: UserMetadata;
+    hasSession?: boolean;
     signIn: (provider?: Provider) => Promise<void>;
     signOut: () => Promise<void>;
 }
@@ -17,31 +18,20 @@ const AuthContext = createContext<AuthContextValues | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const supabase = useSupabaseClient();
-    const [session, setSession] = useState<Session | undefined>();
     const [user, setUser] = useState<UserMetadata | undefined>();
-
-    useEffect(() => {
-        const fetchSession = async () => {
-            const {data: userSession} = await supabase.auth.getSession()
-
-            if (userSession.session) {
-                setSession(userSession.session)
-            }
-        }
-
-        void fetchSession()
-    })
+    const {session, hasSession, fetchingSession} = useSessionToken();
 
     useEffect(() => {
         const fetchUser = async () => {
-            if (session) {
-                const {data: userData} = await supabase.auth.getUser()
-                setUser(userData.user?.user_metadata)
-            }
+            console.log('fetching user');
+            const {data: userData} = await supabase.auth.getUser();
+            setUser(userData.user?.user_metadata);
         }
 
-        void fetchUser()
-    }, [session])
+        if (hasSession) {
+            void fetchUser();
+        }
+    }, [session, hasSession]);
 
     async function signIn(provider: Provider = "github") {
         const {data, error} = await supabase.auth.signInWithOAuth({
@@ -54,12 +44,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (error) {
             throw new Error('Error signing in')
         }
-
-        const {data: userSession, error: sessionError} = await supabase.auth.getSession()
-
-        if (userSession.session) {
-            setSession(userSession.session)
-        }
     }
 
     async function signOut() {
@@ -70,8 +54,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
     }
 
+    if (!!fetchingSession) {
+        return null
+    }
+
     return (
-        <AuthContext.Provider value={{session, user, signIn, signOut}}>
+        <AuthContext.Provider value={{hasSession, user, signIn, signOut}}>
             {children}
         </AuthContext.Provider>
     );

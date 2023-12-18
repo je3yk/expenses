@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserMetadata } from "@supabase/supabase-js";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "~/components/ui/button";
@@ -17,7 +16,8 @@ const accountSchema = z.object({
 
 type AccountSchema = z.infer<typeof accountSchema>;
 
-const ProfileForm = ({user}: {user: UserMetadata}) => {
+const ProfileForm = () => {
+    const {user} = useAuth();
     const form = useForm<AccountSchema>({
         resolver: zodResolver(accountSchema),
         defaultValues: {
@@ -90,14 +90,4 @@ const ProfileForm = ({user}: {user: UserMetadata}) => {
     );
 }
 
-const UserProfile = () => {
-    const {user} = useAuth();
-
-    if (!user) {
-        return null;
-    }
-
-    return <ProfileForm user={user} />
-}
-
-export default UserProfile;
+export default ProfileForm;
