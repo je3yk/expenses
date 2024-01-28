@@ -9,14 +9,6 @@ export default function AuthenticatedLayout({
 }: {
   children: React.ReactNode;
 }) {
-
-  // TODO: Add isLoading state in AuthContext
-  // const { user } = useAuth();
-
-  // if (!user) {
-  //   return redirect("/");
-  // }
-
   return (
     <div className="h-full">
       <Header />

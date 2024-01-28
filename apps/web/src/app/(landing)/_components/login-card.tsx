@@ -2,10 +2,12 @@
 
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
-import { useAuth } from "~/context/AuthContext";
 
 export default function LoginCard() {
-    const {user, signIn} = useAuth();
+    const user = {
+        full_name: 'Andrew Example',
+        avatar_url: 'https://avatars.githubusercontent.com/u/263385',
+    }
 
     if (user) {
         return (
@@ -24,7 +26,7 @@ export default function LoginCard() {
                 <CardDescription>Sign in with one of the providers</CardDescription>
             </CardHeader>
             <CardContent>
-                <Button variant="outline" onClick={() => signIn()} className="font-bold w-full py-5">GitHub</Button>
+                <Button variant="outline" onClick={() => console.log('signIn with google')} className="font-bold w-full py-5">GitHub</Button>
             </CardContent>
         </Card>
     )

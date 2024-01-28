@@ -3,7 +3,7 @@ import "~/styles/globals.css";
 import { GeistSans } from "geist/font";
 import type { Metadata } from "next";
 
-import { AuthProvider } from "~/context/AuthContext";
+import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "~/providers/theme-provider";
 import TrpcProvider from "~/providers/trpc-provider";
 
@@ -20,16 +20,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AuthProvider>
+        <ClerkProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <TrpcProvider>{children}</TrpcProvider>
-          </AuthProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

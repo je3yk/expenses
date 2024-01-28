@@ -9,6 +9,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
@@ -34,13 +35,15 @@ export default function ThemeSwitch() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="p-0">
         <DropdownMenuItem onClick={() => setTheme("light")}>
           Light
         </DropdownMenuItem>
+        <DropdownMenuSeparator className="my-0" />
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           Dark
         </DropdownMenuItem>
+        <DropdownMenuSeparator className="my-0" />
         <DropdownMenuItem onClick={() => setTheme("system")}>
           System
         </DropdownMenuItem>

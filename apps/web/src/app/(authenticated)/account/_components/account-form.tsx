@@ -1,12 +1,12 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "~/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { useAuth } from "~/context/AuthContext";
 
 const accountSchema = z.object({
     full_name: z.string().optional(),
@@ -17,19 +17,21 @@ const accountSchema = z.object({
 type AccountSchema = z.infer<typeof accountSchema>;
 
 const ProfileForm = () => {
-    const {user} = useAuth();
+    const {user} = useUser()
+
     const form = useForm<AccountSchema>({
         resolver: zodResolver(accountSchema),
         defaultValues: {
-            user_name: user?.user_name ?? '',
-            full_name: user?.full_name ?? '',
-            email: user?.email ?? '',
+            user_name: user?.username ?? '',
+            full_name: user?.fullName ?? '',
+            email: user?.primaryEmailAddress?.emailAddress ?? '',
         }
     })
 
     const onSubmit = (values: AccountSchema) => {
-        console.log('values', values)
+        console.log('submit', values)
     }
+
 
     return (
         <div className="flex flex-col items-center justify-center w-full py-4">
