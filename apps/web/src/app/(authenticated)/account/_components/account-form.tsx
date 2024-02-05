@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Button } from "~/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { trpc } from "~/trpc/client";
 
 const accountSchema = z.object({
     full_name: z.string().optional(),
@@ -18,6 +19,7 @@ type AccountSchema = z.infer<typeof accountSchema>;
 
 const ProfileForm = () => {
     const {user} = useUser()
+    const {data: userData} = trpc.users.getUser.useQuery()
 
     const form = useForm<AccountSchema>({
         resolver: zodResolver(accountSchema),
@@ -88,6 +90,7 @@ const ProfileForm = () => {
                     <Button type="submit" className="w-1/4 self-end">Save</Button>
                 </form>
             </Form>
+            {JSON.stringify(userData?.user)}
         </div>
     );
 }

@@ -15,10 +15,10 @@ export const env = createEnv({
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
 
-    NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().url(),
-    NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().url(),
-    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string().url(),
-    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string().url(),
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string(),
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string(),
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string(),
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string(),
   },
 
   runtimeEnv: {
