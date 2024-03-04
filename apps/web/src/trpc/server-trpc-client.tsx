@@ -4,9 +4,9 @@ import { appRouter, createCaller } from "@expenses/api";
 // todo add fetching auth from supabase-auth
 
 export const serverTrpc = () => {
-  const authSession = auth()
+  const authSession = auth();
 
   return createCaller(appRouter)({
-    auth: authSession
+    auth: authSession,
   });
 };

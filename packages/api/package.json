@@ -11,10 +11,12 @@
     "dependencies": {
         "@clerk/nextjs": "^4.29.3",
         "@expenses/db": "workspace:*",
+        "@expenses/env": "workspace:*",
         "@trpc/client": "^10.44.1",
         "@trpc/server": "^10.44.1",
+        "superjson": "^2.2.1",
         "typescript": "^5.3.2",
-        "@expenses/env": "workspace:*"
+        "zod": "^3.0.0"
     },
     "devDependencies": {
         "@expenses/eslint-config": "workspace:*",

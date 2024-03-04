@@ -19,7 +19,7 @@ export const createContextInner = async ({ auth }: AuthContext) => {
 export const createContext = async (
   opts: trpcNext.CreateNextContextOptions,
 ) => {
-  return await createContextInner({ auth: getAuth(opts.req) });
+  return createContextInner({ auth: getAuth(opts.req) });
 };
 
 export type Context = trpc.inferAsyncReturnType<typeof createContext>;
