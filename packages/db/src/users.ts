@@ -6,7 +6,10 @@ import { users } from "./schema";
 type UserSelect = InferSelectModel<typeof users>;
 type UserInsert = InferInsertModel<typeof users>;
 
-export type UserInsertInput = Omit<UserInsert, "clerkId">;
+export type UserInsertInput = Omit<
+  UserInsert,
+  "clerkId" | "createdAt" | "updatedAt" | "id"
+>;
 
 export const getUsers = async () => {
   return db.select().from(users);
@@ -34,9 +37,9 @@ export const upsertUser = async (
 ) => {
   return db
     .insert(users)
-    .values({ ...input, clerkId, createdAt: new Date() })
+    .values({ ...input, clerkId })
     .onConflictDoUpdate({
       target: [users.clerkId],
-      set: input,
+      set: { ...input, updatedAt: new Date().toISOString() },
     });
 };
