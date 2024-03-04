@@ -50,6 +50,13 @@
       "when": 1709067412963,
       "tag": "0006_fine_tinkerer",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1709576922625,
+      "tag": "0007_flippant_slyde",
+      "breakpoints": true
     }
   ]
 }
