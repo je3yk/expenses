@@ -13,10 +13,10 @@
     "db:generate": "pnpm -F db db:generate"
   },
   "devDependencies": {
+    "@expenses/tsconfig": "workspace:*",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
-    "@expenses/tsconfig": "workspace:*",
-    "turbo": "latest"
+    "turbo": "^1.11.3"
   },
   "packageManager": "pnpm@8.6.10",
   "name": "expenses"

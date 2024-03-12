@@ -18,7 +18,7 @@ importers:
         specifier: ^3.0.3
         version: 3.2.2
       turbo:
-        specifier: latest
+        specifier: ^1.11.3
         version: 1.11.3
 
   apps/web:
