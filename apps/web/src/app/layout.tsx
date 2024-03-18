@@ -1,11 +1,16 @@
 import "~/styles/globals.css";
 
-import { GeistSans } from "geist/font";
 import type { Metadata } from "next";
-
+import { Roboto } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+
 import ThemeProvider from "~/providers/theme-provider";
 import TrpcProvider from "~/providers/trpc-provider";
+
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Expenses",
@@ -19,7 +24,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>
+      <body className={roboto.className}>
         <ClerkProvider>
           <ThemeProvider
             attribute="class"

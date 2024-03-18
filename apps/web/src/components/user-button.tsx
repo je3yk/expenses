@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { User } from "lucide-react";
@@ -48,8 +49,9 @@ export const UserButton = () => {
   }
 
   const avatarParams = new URLSearchParams();
-  avatarParams.set("w", "34");
-  avatarParams.set("h", "34");
+  avatarParams.set("w", "35");
+  avatarParams.set("h", "35");
+  avatarParams.set("fit", "scale-down");
   avatarParams.set("quality", "50");
 
   const avatarUrl = `${user.imageUrl}?${avatarParams.toString()}`;
@@ -58,7 +60,7 @@ export const UserButton = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="h-[35px] p-0">
-          <img src={avatarUrl} alt="avatar" width={34} height={34} />
+          <Image src={avatarUrl} alt="avatar" width={35} height={35} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-24 p-0">
