@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import ThemeProvider from "~/providers/theme-provider";
 import TrpcProvider from "~/providers/trpc-provider";
@@ -35,6 +36,7 @@ export default function RootLayout({
             <TrpcProvider>{children}</TrpcProvider>
           </ThemeProvider>
         </ClerkProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
