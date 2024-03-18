@@ -1,8 +1,9 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { RouterOutputs } from "@expenses/api";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -28,32 +29,32 @@ const accountSchema = z.object({
 
 type AccountSchema = z.infer<typeof accountSchema>;
 
-type UserDetails = RouterOutputs["users"]["getUser"];
+type UserDetails = RouterOutputs["users"]["getMe"];
 
 const ProfileForm = ({ initData }: { initData: UserDetails }) => {
   const { user } = useUser();
+  const { signOut } = useAuth();
+
   const {
     data: userData,
-    isLoading,
+    isLoading: fetchingUserData,
     refetch,
-  } = trpc.users.getUser.useQuery(undefined, {
+  } = trpc.users.getMe.useQuery(undefined, {
     initialData: initData,
   });
-  const { mutateAsync: upsertUser } = trpc.users.updateUser.useMutation();
 
-  const initValues = userData
-    ? {
-        firstName: userData?.firstName ?? "",
-        lastName: userData?.lastName ?? "",
-        email: userData?.email ?? "",
-        avatarUrl: userData?.avatarUrl ?? "",
-      }
-    : {
-        firstName: user?.firstName ?? undefined,
-        lastName: user?.lastName ?? undefined,
-        email: user?.primaryEmailAddress?.emailAddress ?? undefined,
-        avatarUrl: user?.imageUrl ?? undefined,
-      };
+  const { mutate: deleteUser } = trpc.users.deleteAccount.useMutation();
+  const { mutate: upsertUser, isLoading: saving } =
+    trpc.users.updateUser.useMutation();
+
+  const isLoading = fetchingUserData || saving;
+
+  const initValues = {
+    firstName: user?.firstName ?? undefined,
+    lastName: user?.lastName ?? undefined,
+    email: user?.primaryEmailAddress?.emailAddress ?? undefined,
+    avatarUrl: user?.imageUrl ?? undefined,
+  };
 
   const form = useForm<AccountSchema>({
     resolver: zodResolver(accountSchema),
@@ -61,13 +62,22 @@ const ProfileForm = ({ initData }: { initData: UserDetails }) => {
   });
 
   const onSubmit = async (values: any) => {
-    const res = await upsertUser(values);
+    await upsertUser(values);
+
+    console.log("updated");
     refetch();
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const handleDelete = async () => {
+    if (confirm("Are you sure?")) {
+      await deleteUser();
+      signOut();
+    }
+  };
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className="flex w-full flex-col items-center justify-center py-4">
@@ -124,9 +134,25 @@ const ProfileForm = ({ initData }: { initData: UserDetails }) => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-1/4 self-end">
-            Save
-          </Button>
+          <div className="flex w-full justify-between">
+            <Button variant="destructive" onClick={handleDelete}>
+              Delete account
+            </Button>
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-1/4 self-end"
+            >
+              {isLoading ? (
+                <>
+                  <ReloadIcon className="h-4 w-4 animate-spin" />
+                  Saving...
+                </>
+              ) : (
+                "Save"
+              )}
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

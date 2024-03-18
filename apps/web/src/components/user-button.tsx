@@ -1,17 +1,18 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { User } from "lucide-react";
-import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 
 export const UserButton = () => {
@@ -47,11 +48,19 @@ export const UserButton = () => {
     );
   }
 
+  const avatarParams = new URLSearchParams();
+  avatarParams.set("w", "35");
+  avatarParams.set("h", "35");
+  avatarParams.set("fit", "scale-down");
+  avatarParams.set("quality", "50");
+
+  const avatarUrl = `${user.imageUrl}?${avatarParams.toString()}`;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="h-[35px] p-0">
-          <img src={user.imageUrl} alt="avatar" width={34} height={34} />
+          <Image src={avatarUrl} alt="avatar" width={35} height={35} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-24 p-0">

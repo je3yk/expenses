@@ -11,17 +11,18 @@
     "with-env": "dotenv -e ../../.env.local --"
   },
   "dependencies": {
+    "@expenses/env": "workspace:*",
     "drizzle-orm": "^0.29.0",
-    "postgres": "^3.4.3",
-    "@expenses/env": "workspace:*"
+    "drizzle-zod": "^0.5.1",
+    "postgres": "^3.4.3"
   },
   "devDependencies": {
     "@expenses/eslint-config": "workspace:*",
     "@expenses/prettier-config": "workspace:*",
     "@expenses/tsconfig": "workspace:*",
+    "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.20.4",
-    "pg": "^8.11.3",
-    "dotenv-cli": "^7.3.0"
+    "pg": "^8.11.3"
   },
   "eslintConfig": {
     "extends": [

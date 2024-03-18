@@ -43,3 +43,7 @@ export const upsertUser = async (
       set: { ...input, updatedAt: new Date().toISOString() },
     });
 };
+
+export const deleteUser = async (clerkId: UserSelect["clerkId"]) => {
+  return db.delete(users).where(eq(users.clerkId, clerkId));
+};
