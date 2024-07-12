@@ -9,7 +9,7 @@ import ThemeProvider from "~/providers/theme-provider";
 import TrpcProvider from "~/providers/trpc-provider";
 
 const roboto = Roboto({
-  weight: "400",
+  weight: ["400", "700", "900"],
   subsets: ["latin"],
 });
 
