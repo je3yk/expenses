@@ -1,16 +1,37 @@
 import { Coins, DollarSign, PiggyBank, ShoppingCart } from "lucide-react";
-import { StatCard } from "~/components/stat-card";
-import { Card, CardContent, CardHeader } from "~/components/ui/card";
 
-const currencyFormat = new Intl.NumberFormat("en-US", {currency: "pln", style: "currency"});
+import { StatCard } from "~/components/stat-card";
+import { BalanceDialog } from "./BalanceDialog";
 
 export default function NumbersPage() {
   return (
-    <div className="grid h-full w-full grid-cols-4 gap-4">
-      <StatCard value={currencyFormat.format(12345)} label="Balance" Icon={DollarSign} />
-      <StatCard value={currencyFormat.format(800)} label="Spend" Icon={ShoppingCart} />
-      <StatCard value={currencyFormat.format(1000)} label="Income" Icon={Coins} />
-      <StatCard value={currencyFormat.format(1000)} label="Saving" Icon={PiggyBank} />
+    <div className="grid max-h-[25vh] w-full grid-cols-4 grid-rows-1 gap-4">
+      <StatCard
+        value={12345}
+        label="Income"
+        Icon={DollarSign}
+        variant="currency"
+        caption="All the money you've earned in this period"
+      >
+        <BalanceDialog label="Add income" type="income" />
+      </StatCard>
+      <StatCard
+        value={-800}
+        label="Outcome"
+        Icon={ShoppingCart}
+        variant="currency"
+      >
+        <BalanceDialog label="Add outcome" type="outcome" />
+      </StatCard>
+      <StatCard
+        value={1000}
+        label="Savings"
+        Icon={PiggyBank}
+        variant="currency"
+      >
+        <BalanceDialog label="Add savings" type="savings" />
+      </StatCard>
+      <StatCard value={0} label="Balance" variant="currency" Icon={Coins} />
     </div>
   );
 }
