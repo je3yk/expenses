@@ -1,20 +1,21 @@
 import { cva, VariantProps } from "class-variance-authority";
+
 import { cn } from "~/lib/utils";
 
 const typographyVariansts = cva("text-black dark:text-white", {
   variants: {
     variant: {
-      h1: "text-3xl font-bold", /* 30px, 700 */
-      h2: "text-2xl font-bold", /* 24px, 700 */
-      h3: "text-xl font-bold", /* 20px, 700 */
-      h4: "text-lg font-bold", /* 18px, 700 */
-      h5: "text-base font-bold", /* 16px, 700 */
-      h6: "text-sm font-bold", /* 14px, 700 */
-      body1: "text-base font-normal", /* 16px, 400 */
-      body2: "text-sm font-normal", /* 14px, 400 */
-      caption: "text-xs font-normal", /* 12px, 400 */
-      overline: "text-xs font-bold", /* 12px, 700 */
-      button: "text-sm font-bold", /* 14px, 700 */
+      h1: "text-3xl font-bold" /* 30px, 700 */,
+      h2: "text-2xl font-bold" /* 24px, 700 */,
+      h3: "text-xl font-bold" /* 20px, 700 */,
+      h4: "text-lg font-bold" /* 18px, 700 */,
+      h5: "text-base font-bold" /* 16px, 700 */,
+      h6: "text-sm font-bold" /* 14px, 700 */,
+      body1: "text-base font-normal" /* 16px, 400 */,
+      body2: "text-sm font-normal" /* 14px, 400 */,
+      caption: "text-xs font-normal" /* 12px, 400 */,
+      overline: "text-xs font-bold" /* 12px, 700 */,
+      button: "text-sm font-bold" /* 14px, 700 */,
     },
   },
 });
@@ -23,7 +24,7 @@ export type TypographyVariant = VariantProps<
   typeof typographyVariansts
 >["variant"];
 
-type TypographyProps = {
+export type TypographyProps = {
   variant?: TypographyVariant;
   className?: string;
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 "use client";
 
-import { PlusCircleIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 
 import { Typography } from "~/components/typography";
 import { Button, ButtonProps } from "~/components/ui/button";
@@ -23,16 +23,16 @@ export const BalanceDialogTrigger = ({
     <Button
       variant="tertiary"
       size="sm"
-      className="gap-2 rounded-3xl py-0"
+      className="flex rounded-[50%] p-2 px-1"
       onClick={onClick}
     >
-      <PlusCircleIcon className="h-4 w-4" />
-      <Typography
+      <PlusIcon className="h-5 w-5" />
+      {/* <Typography
         variant="caption"
-        className="text-xs font-bold text-inherit dark:text-inherit"
+        className="hidden group-hover:block group-hover:font-bold"
       >
         {label}
-      </Typography>
+      </Typography> */}
     </Button>
   );
 };
@@ -48,21 +48,29 @@ export const BalanceDialog = ({ label, type }: BalanceDialogProps) => {
           <Typography variant="h2">{label}</Typography>
           <div className="flex flex-col gap-4">
             <input
-              type="date"
-              className="rounded-lg p-2"
-              placeholder="Entry date"
-              defaultValue={new Date().toISOString().split("T")[0]}
-            />
-            <input
               type="text"
               placeholder={`${type} name`}
               className="rounded-lg p-2"
             />
             <input
-              type="number"
-              placeholder={`${type} amount`}
+              type="date"
               className="rounded-lg p-2"
+              placeholder="Entry date"
+              defaultValue={new Date().toISOString().split("T")[0]}
             />
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder={`${type} category`}
+                className="rounded-lg p-2"
+              />
+              <input
+                type="number"
+                placeholder={`${type} amount`}
+                className="rounded-lg p-2 text-right"
+                defaultValue={0}
+              />
+            </div>
           </div>
           <Button className="w-full">{label}</Button>
         </div>

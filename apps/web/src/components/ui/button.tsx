@@ -16,7 +16,7 @@ const buttonVariants = cva(
         secondary: "text-secondary-foreground shadow-sm",
         ghost: "",
         link: "underline-offset-4 hover:underline",
-        tertiary: "py-0 px-2 hover:border hover:border-tertiary ",
+        tertiary: "border border-2",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -32,7 +32,7 @@ const buttonVariants = cva(
         contrast: "bg-contrast hover:bg-contrast/90",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         tertiary:
-          "bg-tertiary hover:bg-tertiary/90 text-tertiary-foreground hover:text-accent-foreground border-tertiary",
+          "bg-accent hover:bg-tertiary text-accent-foreground hover:text-tertiary-foreground border-accent-foreground",
         link: "text-primary",
       },
     },

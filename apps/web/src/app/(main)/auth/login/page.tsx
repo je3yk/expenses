@@ -1,4 +1,4 @@
-import LoginCard from "../../_components/login-card";
+import LoginCard from "../../components/login-card";
 
 const LoginPage = () => {
     return (

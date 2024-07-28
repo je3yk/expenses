@@ -10,7 +10,7 @@ export default function DashboardLayout({
   return (
     <div className="flex h-full w-full flex-col gap-5 px-10 pb-10 pt-[100px]">
       <div className="flex h-fit w-full">{numbers}</div>
-      <div className="flex h-full w-full items-center justify-center gap-5">
+      <div className="flex h-full max-h-[65vh] w-full items-center justify-center gap-5">
         <div className="h-full w-2/3">{stats}</div>
         <div className="h-full w-1/3">{todo}</div>
       </div>

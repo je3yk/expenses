@@ -1,7 +1,7 @@
 import React from "react";
 import { auth } from "@clerk/nextjs";
 
-import Header from "./_components/header";
+import Header from "./components/header";
 
 export default function HomeLayout({
   landing,

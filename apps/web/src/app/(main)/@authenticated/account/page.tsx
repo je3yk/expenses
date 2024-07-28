@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
 import { serverTrpc } from "~/trpc/server-trpc-client";
-import AccountForm from "../_components/account-form";
-import Avatar from "../_components/avatar";
+import AccountForm from "../components/account-form";
+import Avatar from "../components/avatar";
 
 const AccountPage = async () => {
   const data = await serverTrpc().users.getMe();
