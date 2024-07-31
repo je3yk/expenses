@@ -91,91 +91,40 @@ const rows = [
     type: "negative" as const,
     amount: 2000,
   },
-  {
-    key: "TRANS8",
-    date: dayjs().add(-8, "day").format("YYYY-MM-DD"),
-    name: "Zakupy spożywcze",
-    category: "Food",
-    type: "negative" as const,
-    amount: 100,
-  },
-  {
-    key: "TRANS9",
-    date: dayjs().add(-9, "day").format("YYYY-MM-DD"),
-    name: "Paliwo",
-    category: "Car",
-    type: "negative" as const,
-    amount: 200,
-  },
-  {
-    key: "TRANS10",
-    date: dayjs().add(-10, "day").format("YYYY-MM-DD"),
-    name: "Książka",
-    category: "Entertainment",
-    type: "negative" as const,
-    amount: 50,
-  },
-  {
-    key: "TRANS11",
-    date: dayjs().add(-11, "day").format("YYYY-MM-DD"),
-    name: "Bilet na pociąg",
-    category: "Travel",
-    type: "negative" as const,
-    amount: 150,
-  },
-  {
-    key: "TRANS12",
-    date: dayjs().add(-12, "day").format("YYYY-MM-DD"),
-    name: "Kawa",
-    category: "Food",
-    type: "negative" as const,
-    amount: 10,
-  },
-  {
-    key: "TRANS13",
-    date: dayjs().add(-13, "day").format("YYYY-MM-DD"),
-    name: "Czynsz za mieszkanie",
-    category: "Living",
-    type: "negative" as const,
-    amount: 2000,
-  },
-  {
-    key: "TRANS14",
-    date: dayjs().add(-14, "day").format("YYYY-MM-DD"),
-    name: "Zakupy spożywcze",
-    category: "Food",
-    type: "negative" as const,
-    amount: 100,
-  },
 ];
 
 export const TransactionTable = () => {
   return (
-    <Table className="h-full overflow-y-scroll">
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Date</TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Category</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {rows.map((row) => (
-          <TableRow key={row.key}>
-            <TableCell className="font-medium">{row.date}</TableCell>
-            <TableCell>{row.name}</TableCell>
-            <TableCell>{row.category}</TableCell>
-            <TableCell className="text-right">
-              <CurrencyTypography
-                value={row.amount}
-                type={row.type}
-                className="font-bold"
-              />
-            </TableCell>
+    <div className="w-full">
+      <Table className="px-6">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Date</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.key}>
+              <TableCell className="pl-2 font-medium">{row.date}</TableCell>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.category}</TableCell>
+              <TableCell className="pr-2 text-right">
+                <CurrencyTypography
+                  value={row.amount}
+                  type={row.type}
+                  className="font-bold"
+                />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <div className="w-full bg-muted p-4 text-muted-foreground">
+        Controls panel
+      </div>
+    </div>
   );
 };

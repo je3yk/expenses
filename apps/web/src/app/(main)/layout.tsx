@@ -12,7 +12,7 @@ export default function HomeLayout({
 }) {
   const { userId } = auth();
   return (
-    <div className="h-full w-full">
+    <div className="w-full">
       <Header />
       {userId ? authenticated : landing}
     </div>

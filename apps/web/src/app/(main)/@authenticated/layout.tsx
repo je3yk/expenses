@@ -3,5 +3,5 @@ export default function AuthenticatedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="flex h-full w-full">{children}</div>;
+  return <div>{children}</div>;
 }

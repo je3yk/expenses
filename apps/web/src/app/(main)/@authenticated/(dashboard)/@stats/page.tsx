@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { TransactionTable } from "./components/transactionsTable";
+import { TransactionTable } from "./components/transactions-table";
 
 export default function Chart() {
   return (
@@ -7,7 +7,7 @@ export default function Chart() {
       <CardHeader>
         <CardTitle>Transactions history</CardTitle>
       </CardHeader>
-      <CardContent className="w-full overflow-y-auto">
+      <CardContent className="w-full overflow-y-auto p-0">
         <TransactionTable />
       </CardContent>
     </Card>

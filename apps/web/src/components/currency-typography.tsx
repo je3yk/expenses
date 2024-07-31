@@ -57,6 +57,7 @@ export const CurrencyTypography = ({
   );
   return (
     <Typography {...typographyProps} className={fieldClassName}>
+      {type === "negative" && "-"}
       {currencyFormat.format(value)}
     </Typography>
   );
