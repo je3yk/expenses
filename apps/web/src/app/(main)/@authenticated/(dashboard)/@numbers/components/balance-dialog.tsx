@@ -1,15 +1,26 @@
 "use client";
 
+import { useState } from "react";
+import { RouterInputs } from "@expenses/api";
 import { PlusIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
 
-import { Typography } from "~/components/typography";
 import { Button, ButtonProps } from "~/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "~/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
 import { cn } from "~/lib/utils";
+import { trpc } from "~/trpc/client";
+
+type Expenses = RouterInputs["expenses"]["addExpense"];
 
 type BalanceDialogProps = {
   label: string;
-  type: "outcome" | "income" | "savings";
+  type: Expenses["type"];
   children?: React.ReactNode;
 };
 
@@ -26,12 +37,7 @@ export const BalanceDialogTrigger = ({
   children,
 }: BalanceDialogTriggerProps) => {
   return (
-    <Button
-      variant="tertiary"
-      size="sm"
-      className={cn("flex rounded-[50%] p-2 px-1", className)}
-      onClick={onClick}
-    >
+    <Button onClick={onClick} size="icon">
       <PlusIcon className="h-5 w-5" aria-label={label} />
       {children}
     </Button>
@@ -43,41 +49,72 @@ export const BalanceDialog = ({
   type,
   children,
 }: BalanceDialogProps) => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const { handleSubmit, register, reset } = useForm<Expenses>({
+    defaultValues: {
+      type,
+      name: "",
+      date: new Date().toISOString().split("T")[0],
+      category: "",
+      amount: 0,
+    },
+  });
+
+  const mutation = trpc.expenses.addExpense.useMutation();
+
+  const onSubmit = async (values: Expenses) => {
+    const data = await mutation.mutateAsync({
+      ...values,
+      amount: Number(values.amount),
+    });
+    console.log(data);
+    setDialogOpen(false);
+    reset();
+  };
+
   return (
-    <Dialog>
+    <Dialog open={dialogOpen} onOpenChange={(open) => setDialogOpen(open)}>
       <DialogTrigger asChild>
         {children ?? <BalanceDialogTrigger label={label} type={type} />}
       </DialogTrigger>
       <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{label}</DialogTitle>
+        </DialogHeader>
         <div className="flex flex-col gap-4">
-          <Typography variant="h2">{label}</Typography>
-          <div className="flex flex-col gap-4">
-            <input
-              type="text"
-              placeholder={`${type} name`}
-              className="rounded-lg p-2"
-            />
-            <input
-              type="date"
-              className="rounded-lg p-2"
-              placeholder="Entry date"
-              defaultValue={new Date().toISOString().split("T")[0]}
-            />
-            <div className="flex gap-2">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-4">
               <input
                 type="text"
-                placeholder={`${type} category`}
-                className="rounded-lg p-2"
+                placeholder={`${type} name`}
+                className="rounded-lg border-2 p-2"
+                {...register("name")}
               />
               <input
-                type="number"
-                placeholder={`${type} amount`}
-                className="rounded-lg p-2 text-right"
-                defaultValue={0}
+                type="date"
+                className="rounded-lg border-2 p-2"
+                placeholder="Entry date"
+                defaultValue={new Date().toISOString().split("T")[0]}
+                {...register("date")}
               />
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder={`${type} category`}
+                  className="rounded-lg border-2 p-2"
+                  {...register("category")}
+                />
+                <input
+                  type="number"
+                  placeholder={`${type} amount`}
+                  className="rounded-lg border-2 p-2 text-right"
+                  defaultValue={0}
+                  {...register("amount")}
+                />
+              </div>
+              <Button className="w-full">{label}</Button>
             </div>
-          </div>
-          <Button className="w-full">{label}</Button>
+          </form>
         </div>
       </DialogContent>
     </Dialog>

@@ -5,21 +5,21 @@ import { Typography } from "./typography";
 const meta: Meta<typeof Typography> = {
   title: "Typography",
   component: Typography,
-  tags: ['autodocs']
+  tags: ["autodocs"],
 };
 
 export default meta;
 
 type Story = StoryObj<typeof Typography>;
 
-const defaultText = 'This is an example text';
+const defaultText = "This is an example text";
 
 export const Default: Story = {
   args: {
     children: defaultText,
-    variant: 'h1',
+    variant: "h1",
   },
-}
+};
 
 export const Variants: Story = {
   decorators: [
@@ -38,11 +38,7 @@ export const Variants: Story = {
           <Typography variant="overline">Overline {defaultText}</Typography>
           <Typography variant="button">Button {defaultText}</Typography>
         </div>
-      )
-    }
-  
-  ]
+      );
+    },
+  ],
 };
-
-
-

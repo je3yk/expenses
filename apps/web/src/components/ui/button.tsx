@@ -9,37 +9,35 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-primary-foreground shadow hover:bg-primary/90",
+        primary: "border border-2 hover:border-primary",
         destructive: "text-destructive-foreground shadow-sm",
         outline:
           "border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary: "text-secondary-foreground shadow-sm",
         ghost: "",
         link: "underline-offset-4 hover:underline",
-        tertiary: "border border-2",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        xs: "p-1 text-xs",
+        sm: "p-2 text-xs",
+        md: "p-3",
+        lg: "p-4",
+        icon: "w-10 h-10",
       },
       colorVariant: {
-        default: "bg-primary hover:bg-primary/90",
+        primary: "bg-primary text-primary-foreground active:bg-secondary",
         destructive: "bg-destructive hover:bg-destructive/90",
         outline: "hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary hover:bg-secondary/90",
         contrast: "bg-contrast hover:bg-contrast/90",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        tertiary:
-          "bg-accent hover:bg-tertiary text-accent-foreground hover:text-tertiary-foreground border-accent-foreground",
         link: "text-primary",
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
-      colorVariant: "default",
+      variant: "primary",
+      size: "md",
+      colorVariant: "primary",
     },
   },
 );

@@ -11,10 +11,10 @@ const currencyFormat = new Intl.NumberFormat("pl", {
 const currencyColorVariants = cva("", {
   variants: {
     colorVariant: {
-      positive: "text-green-600 dark:text-green-600",
-      negative: "text-red-600 dark:text-red-600",
+      positive: "text-green-500 dark:text-green-500",
+      negative: "text-red-500 dark:text-red-500",
       neutral: "",
-      savings: "text-yellow-600 dark:text-yellow-600",
+      savings: "text-yellow-500 dark:text-yellow-500",
     },
   },
 });

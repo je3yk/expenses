@@ -122,7 +122,7 @@ export const TransactionTable = () => {
           ))}
         </TableBody>
       </Table>
-      <div className="w-full bg-muted p-4 text-muted-foreground">
+      <div className="w-full border-t-4 bg-background p-4 text-foreground">
         Controls panel
       </div>
     </div>

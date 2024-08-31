@@ -143,14 +143,12 @@ const ProfileForm = ({ initData }: { initData: UserDetails }) => {
               disabled={isLoading}
               className="w-1/4 self-end"
             >
-              {isLoading ? (
+              {isLoading ?
                 <>
                   <ReloadIcon className="h-4 w-4 animate-spin" />
                   Saving...
                 </>
-              ) : (
-                "Save"
-              )}
+              : "Save"}
             </Button>
           </div>
         </form>
