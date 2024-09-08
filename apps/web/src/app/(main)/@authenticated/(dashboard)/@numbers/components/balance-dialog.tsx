@@ -33,11 +33,10 @@ type BalanceDialogTriggerProps = BalanceDialogProps & {
 export const BalanceDialogTrigger = ({
   label,
   onClick,
-  className,
   children,
 }: BalanceDialogTriggerProps) => {
   return (
-    <Button onClick={onClick} size="icon">
+    <Button onClick={onClick} size="icon" colorVariant="outline">
       <PlusIcon className="h-5 w-5" aria-label={label} />
       {children}
     </Button>

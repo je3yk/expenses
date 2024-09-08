@@ -1,6 +1,9 @@
 import dayjs from "dayjs";
 
-import { CurrencyTypography } from "~/components/currency-typography";
+import {
+  ExpenseIcon,
+  ExpenseTypography,
+} from "~/components/expense-typography";
 import {
   Table,
   TableBody,
@@ -9,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { cn } from "~/lib/utils";
 
 const rows = [
   {
@@ -16,7 +20,7 @@ const rows = [
     date: dayjs().add(-1, "day").format("YYYY-MM-DD"),
     name: "Oszczędności",
     category: "Savings",
-    type: "savings" as const,
+    type: "saving" as const,
     amount: 200,
   },
   {
@@ -24,7 +28,7 @@ const rows = [
     date: dayjs().add(-1, "day").format("YYYY-MM-DD"),
     name: "Czynsz za mieszkanie",
     category: "Living",
-    type: "negative" as const,
+    type: "outcome" as const,
     amount: 2000,
   },
   {
@@ -32,7 +36,7 @@ const rows = [
     date: dayjs().add(-2, "day").format("YYYY-MM-DD"),
     name: "Zakupy spożywcze",
     category: "Food",
-    type: "negative" as const,
+    type: "outcome" as const,
     amount: 100,
   },
   {
@@ -40,7 +44,7 @@ const rows = [
     date: dayjs().add(-2, "day").format("YYYY-MM-DD"),
     name: "Przelew od żony",
     category: "Familly",
-    type: "positive" as const,
+    type: "income" as const,
     amount: 1000,
   },
   {
@@ -48,7 +52,7 @@ const rows = [
     date: dayjs().add(-3, "day").format("YYYY-MM-DD"),
     name: "Paliwo",
     category: "Car",
-    type: "negative" as const,
+    type: "outcome" as const,
     amount: 200,
   },
   {
@@ -56,7 +60,7 @@ const rows = [
     date: dayjs().add(-3, "day").format("YYYY-MM-DD"),
     name: "Wynagrodzenie",
     category: "Work salary",
-    type: "positive" as const,
+    type: "income" as const,
     amount: 3000,
   },
   {
@@ -64,7 +68,7 @@ const rows = [
     date: dayjs().add(-4, "day").format("YYYY-MM-DD"),
     name: "Książka",
     category: "Entertainment",
-    type: "negative" as const,
+    type: "outcome" as const,
     amount: 50,
   },
   {
@@ -72,7 +76,7 @@ const rows = [
     date: dayjs().add(-5, "day").format("YYYY-MM-DD"),
     name: "Bilet na pociąg",
     category: "Travel",
-    type: "negative" as const,
+    type: "outcome" as const,
     amount: 150,
   },
   {
@@ -80,7 +84,7 @@ const rows = [
     date: dayjs().add(-6, "day").format("YYYY-MM-DD"),
     name: "Kawa",
     category: "Food",
-    type: "negative" as const,
+    type: "outcome" as const,
     amount: 10,
   },
   {
@@ -88,7 +92,7 @@ const rows = [
     date: dayjs().add(-7, "day").format("YYYY-MM-DD"),
     name: "Czynsz za mieszkanie",
     category: "Living",
-    type: "negative" as const,
+    type: "outcome" as const,
     amount: 2000,
   },
 ];
@@ -106,23 +110,29 @@ export const TransactionTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.key}>
+          {rows.map((row, i) => (
+            <TableRow
+              key={row.key}
+              className={cn(
+                "group hover:bg-secondary hover:text-secondary-foreground",
+                i % 2 === 0 ? "bg-foreground/10" : "bg-background",
+              )}
+            >
               <TableCell className="pl-2 font-medium">{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.category}</TableCell>
-              <TableCell className="pr-2 text-right">
-                <CurrencyTypography
+              <TableCell className="flex items-center justify-end gap-2 text-right">
+                <ExpenseIcon type={row.type} className="h-5 w-5" />
+                <ExpenseTypography
                   value={row.amount}
-                  type={row.type}
-                  className="font-bold"
+                  className="font-bold group-hover:text-secondary-foreground"
                 />
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <div className="w-full border-t-4 bg-background p-4 text-foreground">
+      <div className="w-full border-t-2 bg-background p-4 text-foreground">
         Controls panel
       </div>
     </div>
