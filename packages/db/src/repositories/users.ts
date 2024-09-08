@@ -1,10 +1,10 @@
 import { eq, InferInsertModel, InferSelectModel } from "drizzle-orm";
 
-import db from "./db";
-import { users } from "./schema";
+import db from "../db";
+import { UsersTable } from "../tables";
 
-type UserSelect = InferSelectModel<typeof users>;
-type UserInsert = InferInsertModel<typeof users>;
+type UserSelect = InferSelectModel<typeof UsersTable>;
+type UserInsert = InferInsertModel<typeof UsersTable>;
 
 export type UserInsertInput = Omit<
   UserInsert,
@@ -12,7 +12,7 @@ export type UserInsertInput = Omit<
 >;
 
 export const getUsers = async () => {
-  return db.select().from(users);
+  return db.select().from(UsersTable);
 };
 
 export const getUser = async (
@@ -20,8 +20,8 @@ export const getUser = async (
 ): Promise<UserSelect | null> => {
   const [user] = await db
     .select()
-    .from(users)
-    .where(eq(users.clerkId, clerkId))
+    .from(UsersTable)
+    .where(eq(UsersTable.clerkId, clerkId))
     .limit(1);
 
   if (!user) {
@@ -36,14 +36,14 @@ export const upsertUser = async (
   input: UserInsertInput,
 ) => {
   return db
-    .insert(users)
+    .insert(UsersTable)
     .values({ ...input, clerkId })
     .onConflictDoUpdate({
-      target: [users.clerkId],
+      target: [UsersTable.clerkId],
       set: { ...input, updatedAt: new Date().toISOString() },
     });
 };
 
 export const deleteUser = async (clerkId: UserSelect["clerkId"]) => {
-  return db.delete(users).where(eq(users.clerkId, clerkId));
+  return db.delete(UsersTable).where(eq(UsersTable.clerkId, clerkId));
 };
