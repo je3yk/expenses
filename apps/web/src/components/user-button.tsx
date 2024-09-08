@@ -27,7 +27,7 @@ export const UserButton = () => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="h-[35px] p-0">
+          <Button variant="outline" size="icon">
             <User className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100" />
           </Button>
         </DropdownMenuTrigger>
