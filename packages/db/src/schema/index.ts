@@ -1,3 +1,3 @@
-export * from "./expenses";
 export * from "./relations";
+export * from "./transactions";
 export * from "./users";

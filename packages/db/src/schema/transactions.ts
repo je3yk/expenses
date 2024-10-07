@@ -7,7 +7,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-export const ExpensesTable = pgTable("expenses", {
+export const TransactionsTable = pgTable("transactions", {
   id: uuid("id").defaultRandom().primaryKey().notNull(),
   userId: uuid("user_id").notNull(),
   amount: numeric("amount", { precision: 10, scale: 4 }).notNull(),
