@@ -1,11 +1,11 @@
-import { env } from "@expenses/env";
-import { drizzle } from "drizzle-orm/postgres-js";
+import {env} from "@expenses/env";
+import {drizzle} from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-import { users } from "./schema";
+import {TransactionsTable, UsersTable} from "./schema";
 
 const connectionString = env.DATABASE_URL;
 const client = postgres(connectionString);
-const db = drizzle(client, { schema: { users } });
+const db = drizzle(client, { schema: { UsersTable, TransactionsTable } });
 
 export default db;

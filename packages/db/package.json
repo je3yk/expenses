@@ -22,7 +22,8 @@
     "@expenses/tsconfig": "workspace:*",
     "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.20.4",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "zod": "^3.0.0"
   },
   "eslintConfig": {
     "extends": [
