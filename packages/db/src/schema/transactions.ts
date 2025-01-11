@@ -19,5 +19,6 @@ export const TransactionsTable = pgTable("transactions", {
   updatedAt: timestamp("updated_at", { withTimezone: true, mode: "date" })
     .defaultNow()
     .notNull(),
+  type: text("type", { enum: ["income", "outcome", "saving"] }).notNull(),
   paidAt: date("paid_at", { mode: "date" }),
 });
