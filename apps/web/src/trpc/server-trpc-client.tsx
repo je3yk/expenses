@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs";
-import { appRouter, createCaller } from "@expenses/api";
+import { appRouter, createCaller } from "@packages/api";
 
 // todo add fetching auth from supabase-auth
 

@@ -1,4 +1,4 @@
-import { env } from "@expenses/env";
+import { env } from "@tools/env";
 import type { Config } from "drizzle-kit";
 
 console.log(env.DATABASE_URL);

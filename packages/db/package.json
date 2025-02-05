@@ -1,5 +1,5 @@
 {
-  "name": "@expenses/db",
+  "name": "@packages/db",
   "private": true,
   "version": "0.1.0",
   "main": "./src/index.ts",
@@ -11,15 +11,15 @@
     "with-env": "dotenv -e ../../.env.local --"
   },
   "dependencies": {
-    "@expenses/env": "workspace:*",
+    "@tools/env": "workspace:*",
     "drizzle-orm": "^0.29.0",
     "drizzle-zod": "^0.5.1",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "@expenses/eslint-config": "workspace:*",
-    "@expenses/prettier-config": "workspace:*",
-    "@expenses/tsconfig": "workspace:*",
+    "@tools/eslint-config": "workspace:*",
+    "@tools/prettier-config": "workspace:*",
+    "@tools/tsconfig": "workspace:*",
     "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.20.4",
     "pg": "^8.11.3",
@@ -32,5 +32,5 @@
       "eslint-config-custom/library"
     ]
   },
-  "prettier": "@expenses/prettier-config"
+  "prettier": "@tools/prettier-config"
 }

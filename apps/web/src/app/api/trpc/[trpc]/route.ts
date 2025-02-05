@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { appRouter, createContext } from "@expenses/api";
+import { appRouter, createContext } from "@packages/api";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { NextApiRequest, NextApiResponse } from "next";
 
 function setCorsHeaders(res: Response) {
   res.headers.set("Access-Control-Allow-Origin", "*");

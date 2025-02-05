@@ -1,5 +1,5 @@
 {
-  "name": "@expenses/eslint-config",
+  "name": "@tools/eslint-config",
   "private": true,
   "version": "0.1.0",
   "files": [
@@ -28,7 +28,7 @@
   "devDependencies": {
     "typescript": "^5.2.2",
     "eslint": "^8.51.0",
-    "@expenses/tsconfig": "workspace:*"
+    "@tools/tsconfig": "workspace:*"
   },
   "eslintConfig": {
     "root": true,

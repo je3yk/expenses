@@ -1,8 +1,8 @@
-import {env} from "@expenses/env";
-import {drizzle} from "drizzle-orm/postgres-js";
+import { env } from "@tools/env";
+import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-import {TransactionsTable, UsersTable} from "./schema";
+import { TransactionsTable, UsersTable } from "./schema";
 
 const connectionString = env.DATABASE_URL;
 const client = postgres(connectionString);

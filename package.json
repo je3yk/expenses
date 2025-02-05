@@ -13,11 +13,12 @@
     "db:push": "pnpm -F db db:push",
     "db:generate": "pnpm -F db db:generate",
     "storybook": "pnpm -F web storybook",
-    "supabase:start": "cd tools/supabase && supabase start",
-    "supabase:status": "cd tools/supabase && supabase status"
+    "supabase:start": "pnpm -F supabase start",
+    "supabase:status": "pnpm -F supabase status",
+    "supabase:stop": "pnpm -F supabase stop"
   },
   "devDependencies": {
-    "@expenses/tsconfig": "workspace:*",
+    "@tools/tsconfig": "workspace:*",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
     "turbo": "^1.12.5"

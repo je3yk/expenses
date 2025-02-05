@@ -1,7 +1,7 @@
-import { upsertUserSchema, users } from "@expenses/db";
-import { TRPCClientError } from "@trpc/client";
+import {upsertUserSchema, users} from "@packages/db";
+import {TRPCClientError} from "@trpc/client";
 
-import { protectedProcedure, router } from "../trpc";
+import {protectedProcedure, router} from "../trpc";
 
 export const usersRouter = router({
   getMe: protectedProcedure.query(async ({ ctx }) => {
