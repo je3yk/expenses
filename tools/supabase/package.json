@@ -1,0 +1,13 @@
+{
+	"name": "@tools/supabase",
+	"private": true,
+	"version": "1.0.0",
+	"scripts": {
+		"start": "supabase start",
+		"status": "supabase status",
+		"stop": "supabase stop"
+	},
+	"devDependencies": {
+		"supabase": "^2.9.6"
+	}
+}

@@ -12,7 +12,9 @@
     "ui:add": "pnpm -F web ui:add",
     "db:push": "pnpm -F db db:push",
     "db:generate": "pnpm -F db db:generate",
-    "storybook": "pnpm -F web storybook"
+    "storybook": "pnpm -F web storybook",
+    "supabase:start": "cd tools/supabase && supabase start",
+    "supabase:status": "cd tools/supabase && supabase status"
   },
   "devDependencies": {
     "@expenses/tsconfig": "workspace:*",
